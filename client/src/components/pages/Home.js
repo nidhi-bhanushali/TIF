@@ -1,4 +1,4 @@
-import React , {useState , useContext} from 'react';
+import React , {useState , useContext, useEffect} from 'react';
 import OpportunityContext from '../../context/opportunities/opportunityContext'
 
 const Home = () => {
@@ -14,8 +14,14 @@ const Home = () => {
 
     const {title, description, location, email, startDate, endDate, noOfHours} = opportunity;
     const opportunityContext = useContext(OpportunityContext)
-    const {addOpportunity} = opportunityContext
+    const {addOpportunity , opportunities , clearMessage} = opportunityContext
 
+    useEffect(() => {
+        if(opportunities){
+            clearMessage()
+        }
+    }, [])
+    
     const onChange = e => setOpportunity({...opportunity , [e.target.name] : e.target.value});
 
     const onSubmit = e => {

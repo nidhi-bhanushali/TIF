@@ -5,12 +5,14 @@ import axios from 'axios';
 import {
     ADD_OPPORTUNITY,
     GET_OPPORTUNITY,
-    OPPORTUNITY_ERROR
+    OPPORTUNITY_ERROR,
+    CLEAR_MESSAGE
 } from '../types'
 
 
 const OpportunityState = props => {
     const initialState = {
+        opportunity:'',
         opportunities : [],
         error: null,
         loading : true
@@ -36,6 +38,21 @@ const OpportunityState = props => {
         }
     }
 
+    const getOpportunities = async() => {
+        try {
+            const res = await axios.get('/api/opportunities');
+            console.log(res)
+            dispatch({ type: GET_OPPORTUNITY , payload: res.data });
+        } catch (err) {
+            console.log(err)
+            dispatch({ type: OPPORTUNITY_ERROR, payload: err.message })
+        }
+    }
+
+    const clearMessage = () => {
+        dispatch({type: CLEAR_MESSAGE})
+    }
+
     return (
         <OpportunityContext.Provider
         value= {{
@@ -45,7 +62,8 @@ const OpportunityState = props => {
             addOpportunity ,
             // filterNews,
             // clearFilter,
-            // getNews  
+            getOpportunities,
+            clearMessage  
         }}
         >
            {props.children}
