@@ -6,7 +6,9 @@ import {
     ADD_OPPORTUNITY,
     GET_OPPORTUNITY,
     OPPORTUNITY_ERROR,
-    CLEAR_MESSAGE
+    CLEAR_MESSAGE,
+    ADD_USER,
+    USER_ERROR
 } from '../types'
 
 
@@ -14,6 +16,7 @@ const OpportunityState = props => {
     const initialState = {
         opportunity:'',
         opportunities : [],
+        user:'',
         error: null,
         loading : true
     };
@@ -49,6 +52,24 @@ const OpportunityState = props => {
         }
     }
 
+    const addUser = async user =>{
+        const config = {
+            headers:{
+                'Content-Type': 'application/json'
+            }
+        }
+
+        try {
+            const res = await axios.post('/api/users' , user, config);
+            console.log(res)
+            dispatch({ type: ADD_USER , payload: res.data.msg });
+        } catch (err) {
+            console.log(err)
+            dispatch({ type: USER_ERROR, payload: err.message })
+        }
+    }
+
+
     const clearMessage = () => {
         dispatch({type: CLEAR_MESSAGE})
     }
@@ -59,11 +80,13 @@ const OpportunityState = props => {
             opportunities: state.opportunities,
             error:state.error,
             loading:state.loading,
+            user:state.user,
             addOpportunity ,
             // filterNews,
             // clearFilter,
             getOpportunities,
-            clearMessage  
+            clearMessage,
+            addUser  
         }}
         >
            {props.children}

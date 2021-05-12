@@ -2,6 +2,8 @@ import {
     ADD_OPPORTUNITY,
     OPPORTUNITY_ERROR,
     GET_OPPORTUNITY,
+    ADD_USER,
+    USER_ERROR,
     CLEAR_MESSAGE 
 } from '../types';
 
@@ -24,6 +26,18 @@ export default (state , action) => {
                 ...state,
                 error: action.payload
             }
+        case ADD_USER:
+            return{
+                ...state,
+                user:action.payload,
+                loading: false
+            }
+        case USER_ERROR:{
+            return{
+                ...state,
+                error: action.payload
+            }
+        }
         case CLEAR_MESSAGE:
             return{
                 loading : true,

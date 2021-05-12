@@ -1,5 +1,6 @@
 import React, {useContext , useEffect, useState} from 'react'
 import OpportunityContext from '../../context/opportunities/opportunityContext'
+import OpportunityItem from './OpportunityItem'
 
 
 const ViewOpportunities = () => {
@@ -18,7 +19,7 @@ const ViewOpportunities = () => {
         <div>
             {
                 (opportunities !== null && !loading) ? opportunities.map(opportunity => (
-                    <h4 key = {opportunity._id}>{opportunity.title}</h4>
+                    <OpportunityItem key={opportunity._id} opportunity = {opportunity}/>
                 )): <h3>Loading</h3> 
             }
         </div>

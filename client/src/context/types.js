@@ -2,3 +2,5 @@ export const GET_OPPORTUNITY = 'GET_OPPORTUNITY';
 export const ADD_OPPORTUNITY = 'ADD_OPPORTUNITY';
 export const OPPORTUNITY_ERROR = 'OPPORTUNITY_ERROR'
 export const CLEAR_MESSAGE = 'CLEAR_MESSAGE';
+export const ADD_USER = 'ADD_USER';
+export const USER_ERROR = 'USER_ERROR';
