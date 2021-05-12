@@ -1,4 +1,5 @@
-import React , {useState} from 'react'
+import React , {useState , useContext} from 'react';
+import OpportunityContext from '../../context/opportunities/opportunityContext'
 
 const Home = () => {
     const [opportunity , setOpportunity] = useState({
@@ -12,6 +13,8 @@ const Home = () => {
     });
 
     const {title, description, location, email, startDate, endDate, noOfHours} = opportunity;
+    const opportunityContext = useContext(OpportunityContext)
+    const {addOpportunity} = opportunityContext
 
     const onChange = e => setOpportunity({...opportunity , [e.target.name] : e.target.value});
 
@@ -21,6 +24,16 @@ const Home = () => {
         if(title === '' || email === '' || location === '' ||
            description === '' || startDate === '' || endDate === '' || noOfHours ==='') {
             alert('Please enter all fields');
+        }else{
+            addOpportunity({
+                title,
+                description,
+                location,
+                startDate,
+                endDate,
+                noOfHours,
+                postedBy : email
+            })
         }
     }
 
