@@ -16,7 +16,7 @@ const OpportunityState = props => {
     const initialState = {
         opportunity:'',
         opportunities : [],
-        user:'',
+        newUser:'',
         error: null,
         loading : true
     };
@@ -33,10 +33,10 @@ const OpportunityState = props => {
 
         try {
             const res = await axios.post('/api/opportunities' , opportunity, config);
-            console.log(res)
+            // console.log(res)
             dispatch({ type: ADD_OPPORTUNITY , payload: res.data.msg.opportunity });
         } catch (err) {
-            console.log(err)
+            // console.log(err)
             dispatch({ type: OPPORTUNITY_ERROR, payload: err.message })
         }
     }
@@ -44,10 +44,10 @@ const OpportunityState = props => {
     const getOpportunities = async() => {
         try {
             const res = await axios.get('/api/opportunities');
-            console.log(res)
+            // console.log(res)
             dispatch({ type: GET_OPPORTUNITY , payload: res.data });
         } catch (err) {
-            console.log(err)
+            // console.log(err)
             dispatch({ type: OPPORTUNITY_ERROR, payload: err.message })
         }
     }
@@ -61,10 +61,10 @@ const OpportunityState = props => {
 
         try {
             const res = await axios.post('/api/users' , user, config);
-            console.log(res)
+            // console.log(res)
             dispatch({ type: ADD_USER , payload: res.data.msg });
         } catch (err) {
-            console.log(err)
+            // console.log(err)
             dispatch({ type: USER_ERROR, payload: err.message })
         }
     }
@@ -80,10 +80,8 @@ const OpportunityState = props => {
             opportunities: state.opportunities,
             error:state.error,
             loading:state.loading,
-            user:state.user,
+            newUser:state.newUser,
             addOpportunity ,
-            // filterNews,
-            // clearFilter,
             getOpportunities,
             clearMessage,
             addUser  

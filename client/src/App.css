@@ -324,7 +324,7 @@ input[type='email'],
 input[type='password'],
 input[type='date'],
 input[type='number'],
-input[type='textarea'],
+/* input[type='textarea'], */
 select,
 textarea {
   display: block;

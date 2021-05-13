@@ -29,7 +29,7 @@ export default (state , action) => {
         case ADD_USER:
             return{
                 ...state,
-                user:action.payload,
+                newUser:action.payload,
                 loading: false
             }
         case USER_ERROR:{
@@ -43,7 +43,8 @@ export default (state , action) => {
                 loading : true,
                 error: null , 
                 opportunity:'', 
-                opportunities:[]
+                opportunities:[],
+                newUser:''
             }
         default:
             return state;

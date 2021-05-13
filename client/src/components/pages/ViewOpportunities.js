@@ -1,10 +1,9 @@
-import React, {useContext , useEffect, useState} from 'react'
+import React, {useContext , useEffect} from 'react'
 import OpportunityContext from '../../context/opportunities/opportunityContext'
 import OpportunityItem from './OpportunityItem'
 
 
 const ViewOpportunities = () => {
-    // const [loading , setLoading] = useState(true)
     const opportunityContext = useContext(OpportunityContext)
     const {getOpportunities , opportunities , clearMessage , loading} = opportunityContext
 
@@ -13,6 +12,7 @@ const ViewOpportunities = () => {
             clearMessage();
         }
         getOpportunities()
+         // eslint-disable-next-line
     }, [])
 
     return (

@@ -20,13 +20,14 @@ const Home = () => {
         if(opportunities){
             clearMessage()
         }
+         // eslint-disable-next-line
     }, [])
     
     const onChange = e => setOpportunity({...opportunity , [e.target.name] : e.target.value});
 
     const onSubmit = e => {
         e.preventDefault();
-        console.log(opportunity)
+        // console.log(opportunity)
         if(title === '' || email === '' || location === '' ||
            description === '' || startDate === '' || endDate === '' || noOfHours ==='') {
             alert('Please enter all fields');

@@ -1,4 +1,4 @@
-import React , {useState , useContext} from 'react'
+import React , {useState , useContext, useEffect} from 'react'
 import {useLocation} from 'react-router-dom'
 import OpportunityContext from '../../context/opportunities/opportunityContext'
 
@@ -6,6 +6,24 @@ import OpportunityContext from '../../context/opportunities/opportunityContext'
 const SignUp = () => {
     const location = useLocation()
     // console.log(location.state)
+
+    const opportunityContext = useContext(OpportunityContext)
+    const {addUser , clearMessage, opportunities, error, newUser} = opportunityContext
+
+
+    useEffect(() => {
+        if(opportunities || newUser){
+            clearMessage()
+        }
+        if(error){
+            alert('Use another email')
+        }
+        if(newUser){
+            // console.log(newUser)
+            alert('User Added')
+        }
+         // eslint-disable-next-line
+    }, [error, newUser])
 
 
     const [user , setUser] = useState({
@@ -16,16 +34,14 @@ const SignUp = () => {
         note:''
     });
 
-    const opportunityContext = useContext(OpportunityContext)
-    const {addUser} = opportunityContext
-
+   
     const {email , phone , noOfHours , note} = user
 
     const onChange = e => setUser({...user , [e.target.name] : e.target.value});
 
     const onSubmit = e => {
         e.preventDefault();
-        console.log(user)
+        // console.log(user)
         if(email === '' || phone === '' ||
            note === ''  || noOfHours ==='') {
             alert('Please enter all fields');
@@ -59,7 +75,7 @@ const SignUp = () => {
                 </div>
                 <div className="form-group">
                     <label htmlFor="note">Motivation to join</label>
-                    <input type="textarea" name="note" onChange={onChange} value={note}/>
+                    <textarea type="textarea" name="note" onChange={onChange} value={note}/>
                 </div>
                 <input type="submit" value="Go ahead" className="btn btn-primary btn-block"/>
             </form>            
